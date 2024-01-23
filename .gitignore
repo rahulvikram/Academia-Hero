@@ -1,0 +1,6 @@
+# Ignore Node.js specific files
+node_modules/
+
+# ignore replit files
+.replit
+replit.nix
