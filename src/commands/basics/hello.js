@@ -4,7 +4,7 @@ const { SlashCommandBuilder } = require('discord.js');
 module.exports = {
   // command metadata
   data: new SlashCommandBuilder()
-  .setName('reply')
+  .setName('hello')
   .setDescription('Basic reply command.'),
   
   // bot response on slash command (used in app.js)

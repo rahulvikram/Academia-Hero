@@ -1,3 +1,5 @@
+// RUN THIS SCRIPT EVERYTIME A COMMAND IS MODIFIED
+
 const { REST, Routes } = require('discord.js');
 const fs = require('node:fs');
 const path = require('node:path');
@@ -27,7 +29,7 @@ for (const folder of commandFolders) {
   }
 }
 
-// make instance of the REST module
+// make instance of the REST object
 const rest = new REST().setToken(token);
 
 // deploy commands via REST
@@ -46,4 +48,4 @@ const rest = new REST().setToken(token);
     // if error, log it
     console.error(error);
   }
-})(); // IIFE
+})(); // IIFE; immediately calls function
