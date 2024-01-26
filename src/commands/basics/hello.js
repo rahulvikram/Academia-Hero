@@ -9,7 +9,7 @@ module.exports = {
   
   // bot response on slash command (used in app.js)
   async execute(interaction) {
-    await interaction.reply('Hello.');
+    await interaction.reply("Hi! I'm here to assist you with your academic needs. Use /help for a list of my commands and features!");
   }
 }
 

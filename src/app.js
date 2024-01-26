@@ -27,11 +27,6 @@ const client = new Client({
 });
 module.exports.client = client;
 
-
-// When the client is ready, run this code
-client.once(Events.ClientReady, readyClient => {
-  console.log(`${readyClient.user.tag} is online!`);
-});
 /*--------------- Loads command files into client's command collection ---------------*/
 // collection of commands
 client.commands = new Collection();
@@ -59,31 +54,20 @@ for (const folder of commandFolders) {
   }
 }
 
-// on slash command execution, an interaction is created; to respond, create a listener 
-client.on(Events.InteractionCreate, async interaction => {
-  if (!interaction.isChatInputCommand()) return; // does nothing if its not a slash command interaction 
-
-  // retrieves interaction's command name and checks for a match in client command list
-  const command = interaction.client.commands.get(interaction.commandName);
-
-  // if no matching command found in client list, return an error
-  if (!command) {
-    console.error(`No command matching ${interaction.commandName} was found.`);
-    return;
+// same as above code, but for events/ folder instead of commands/ folder
+const eventsPath = path.join(__dirname, 'events');
+const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
+// shorter code because we aren't searching for subfolders
+for (const file of eventFiles) {
+  const filePath = path.join(eventsPath, file);
+  const event = require(filePath);
+  // execute event callback function using ...args (similar to *args in python)
+  if (event.once) {
+    client.once(event.name, (...args) => event.execute(...args));
+  } else {
+    client.on(event.name, (...args) => event.execute(...args));
   }
-
-  // error handling if interaction response does not execute properly
-  try {
-    await command.execute(interaction);
-  } catch (error) {
-    console.error(error);
-    if (interaction.replied || interaction.deferred) {
-      await interaction.followUp({ content: 'There was an error while executing this command!', ephemeral: true });
-    } else {
-      await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
-    }
-  }
-})
+}
 
 // UPDATE STATUS EVERY 10 SECONDS
 // dict of videos to choose from
