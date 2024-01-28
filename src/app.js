@@ -104,7 +104,7 @@ client.on("ready", () => {
     // update the user activity with desired type
     client.user.setActivity(activity, { 
       name: 'Teaching',
-      type: ActivityType.Streaming,
+      type: ActivityType.Watching,
       url: link,
     });
   }, 10_000);

@@ -6,6 +6,7 @@ const path = require('node:path');
 
 const token = process.env['TOKEN'];
 const clientId ="1198747325431029971"
+const guildId ="773266550529851402"
 
 const commands = []; // empties the commands list for reloading
 
@@ -14,7 +15,7 @@ const foldersPath = path.join(__dirname, 'commands');
 const commandFolders = fs.readdirSync(foldersPath);
 
 for (const folder of commandFolders) {
-  // Grab all the command files from the commands directory you created earlier
+  // Grab all the command files from the commands/ directory
   const commandsPath = path.join(foldersPath, folder);
   const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
   // Grab the SlashCommandBuilder#toJSON() output of each command's data for deployment
@@ -34,16 +35,18 @@ const rest = new REST().setToken(token);
 
 // deploy commands via REST
 (async () => {
-  try {
+  try {                                      
     console.log(`Started refreshing ${commands.length} application (/) commands.`);
-
+    
     // REST.put to refresh all commands with current set, needed whenever new commands are made
 		const data = await rest.put(
-			Routes.applicationCommands(clientId),
+			Routes.applicationCommands(clientId, guildId),
 			{ body: commands }, // body of the put request (aka data to upload, aka all commands)
 		);
     // if successful
-    console.log(`Successfully reloaded ${data.length} application (/) commands.`); 
+    console.log(`Successfully reloaded ${data.length} application (/) commands.`);
+    let commandList = data.map((dataPiece) => dataPiece.name);
+    console.log(`____List of commands____\n${commandList}`);
   } catch (error) {
     // if error, log it
     console.error(error);
