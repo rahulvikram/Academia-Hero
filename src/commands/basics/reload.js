@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('discord.js');
+ const { SlashCommandBuilder } = require('discord.js');
 
 // this file is for the reload command, which is needed only when a command is updated, NOT when a completely new command is created
 module.exports = {
