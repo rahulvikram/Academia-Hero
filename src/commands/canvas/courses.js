@@ -96,7 +96,6 @@ module.exports = {
         
         // reply to slashcommmand with embed
         await interaction.reply({embeds: [exampleEmbed]});
-        console.log(seasonDictRef);
       })
       .catch( async (err) => {
         await interaction.reply(`Error fetching data.\n${err}`);

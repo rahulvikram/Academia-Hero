@@ -2,17 +2,19 @@
   "name": "nodejs",
   "version": "1.0.0",
   "description": "",
+  "type": "script",
   "main": "src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@types/node": "^18.0.6",
     "discord.js": "^14.14.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.9.2",
     "node-fetch": "^3.2.6"
   }
 }
