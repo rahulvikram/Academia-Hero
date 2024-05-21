@@ -7,7 +7,7 @@ fetch('https://canvas.oregonstate.edu/api/v1/users/6561405/courses',{
         return response.json();
     })
     .then((json) => {
-        fs.writeFile('courses.json', JSON.stringify(json), (err) => {
+        fs.writeFile('tests/courses.json', JSON.stringify(json), (err) => {
             if (err) {
                 throw new Error('Something went wrong.')
             }
@@ -20,7 +20,7 @@ fetch('https://canvas.oregonstate.edu/api/v1/users/6561405/courses',{
 
 
 // gets course list and filters out undefined stuff
-var obj = JSON.parse(fs.readFileSync('courses.json', 'utf8'));
+var obj = JSON.parse(fs.readFileSync('tests/courses.json', 'utf8'));
 const courses = obj.map((course) => {
     if (course.name.includes("(")) {
         return course.name     

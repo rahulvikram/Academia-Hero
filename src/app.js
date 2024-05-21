@@ -1,8 +1,21 @@
 // Import js classes and authentication token
 const fs = require('node:fs');
 const path = require('node:path');
+const express = require('express')
 const { Client, Collection, Events, GatewayIntentBits, ActivityType } = require('discord.js');
 const token = process.env['TOKEN']
+
+const app = express()
+const port = 3000;
+app.get('/', (req, res) => {
+  res.json({
+    'hey': 'test'
+  })
+})
+
+app.listen(port, () => {
+  console.log(`App is listening on port ${port}`)
+})
 
 // Create a new client instance with all its intents
 const client = new Client({
