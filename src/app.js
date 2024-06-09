@@ -5,6 +5,8 @@ const express = require('express')
 const { Client, Collection, Events, GatewayIntentBits, ActivityType } = require('discord.js');
 const token = process.env['TOKEN']
 
+console.log(token);
+
 const app = express()
 const port = 3000;
 app.get('/', (req, res) => {
