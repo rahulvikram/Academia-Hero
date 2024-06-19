@@ -22,9 +22,6 @@ const client = new Client({
   port: process.env.DB_PORT,
 });
 
-const userId = 6561405;
-const bearerToken = `Bearer 1002~VKMLKOd8RyOFeGqwGOYJGjUdRX3Vnah8u4LUqd7RFFBO9H1EiQw93b1sGdxeBraa`;
-
 // Connect to the database
 async function connectClient() {
   try {
