@@ -1,14 +1,27 @@
 import pg from 'pg';
 const { Client } = pg; 
 
+import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+// Get the directory name of the current module file
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Load environment variables from .env file in the parent directory
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
+
+
 // define postgres client 
 const client = new Client({
-  user: 'postgres',
-  host: '127.0.0.1',
-  database: 'test',
-  password: 'Ninjago99',
-  port: 5432,
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_DATABASE,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
 });
+
 const userId = 6561405;
 const bearerToken = `Bearer 1002~VKMLKOd8RyOFeGqwGOYJGjUdRX3Vnah8u4LUqd7RFFBO9H1EiQw93b1sGdxeBraa`;
 
@@ -63,13 +76,11 @@ export default async function registration(userId, bearerToken) {
     if (result && result.rows.length === 0) {
       await registerUser(userId, bearerToken); // Register the user
     } else {
-      console.log('User already registered.');
+      return 'User already registered.';
     }
   } catch (error) {
-    console.error(error); // log any errors
+    return error; // log any errors
   } finally {
     await client.end();
   }
 }
-
-registration(userId, bearerToken);
