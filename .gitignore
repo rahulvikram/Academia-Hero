@@ -7,3 +7,6 @@ replit.nix
 
 # ignore files generated during testing
 tests/courses.json
+
+# env secrets (URGENT)
+.env

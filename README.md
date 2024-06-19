@@ -45,7 +45,7 @@ Streamline your academic experience at OSU with Academia Hero, a handy Disocrd b
  
 <!-- GETTING STARTED -->
 ## Getting Started
-1. Invite Academia Hero to your own Discord server using [this](https://discord.com/oauth2/authorize?client_id=1198747325431029971) link.
+1. Invite Academia Hero to your own Discord server using [this invite link.](https://discord.com/oauth2/authorize?client_id=1198747325431029971)
 2. Begin using slash commands! (see below for command documentation)
 
 <!-- USAGE EXAMPLES -->

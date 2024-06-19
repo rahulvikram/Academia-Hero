@@ -1,5 +1,6 @@
 # files to be ignored by docker image
 .git
+.env
 *Dockerfile*
 *docker-compose*
 node_modules
