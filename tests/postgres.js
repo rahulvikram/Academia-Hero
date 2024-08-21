@@ -62,7 +62,7 @@ async function registerUser(id, token) {
 }
 
 // packaged code for jest mockups & unit testing
-export default async function registration(userId, bearerToken) {
+export async function registration(userId, bearerToken) {
   try {
     // connect to database
     await connectClient();
